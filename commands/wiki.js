@@ -56,8 +56,7 @@ handleSearchHits = hits => {
 handleNoSearchHits = () => {
     let embed = new Discord.MessageEmbed()
         .setTitle("No results")
-        .setDescription("Sorry, I couldn't find that for you.")
-        .setFooter("<:sad:710485918196432928>")
+        .setDescription("Sorry, I couldn't find that for you. <:sad:710485918196432928>")
     return embed
 }
 

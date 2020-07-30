@@ -1,4 +1,5 @@
 const wiki = require("../commands/wiki.js")
+const randomWiki = require("../commands/randomWiki.js")
 const doi = require("../commands/doi.js")
 
 module.exports = (client, msg) => {
@@ -18,11 +19,15 @@ module.exports = (client, msg) => {
     let responsePromise = null;
     switch(cmd) {
         case 'w': responsePromise = wiki(args); break;
+        case 'r': responsePromise = randomWiki(); break;
         case 'doi': responsePromise = doi(args); break;
         default: responsePromise = noCmd(); break;
     }
 
-    responsePromise.then(embed => channel.send(embed))
+    if (responsePromise) responsePromise.then(embed => channel.send(embed))
 }
 
-noCmd = () => new Promise().then(() => "No valid command received, what is a poor bot to do?")
+noCmd = () => {
+    console.log("No valid command received, what is a poor bot to do?")
+    return null
+}
